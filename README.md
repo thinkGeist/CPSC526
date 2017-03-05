@@ -11,7 +11,10 @@ Simply copy the ProxyServer.py file and run in from a terminal
 
 Call via "python3 ProxyServer.py [logoptions] sourcePort server destPort"
   - logoptions:
-    - jkj
+    - -raw Simply print out all data as assumed ASCII
+    - -strip Strip and only output printable ASCII characters (Needs work)
+    - -hex Output in the same style as linux hexdump (Needs work)
+    - -autoN Data divided into N byte chunks, replace N with an integer value
 
 ## Contributing
 
@@ -20,15 +23,3 @@ Call via "python3 ProxyServer.py [logoptions] sourcePort server destPort"
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
-
-## History
-
-TODO: Write history
-
-## Credits
-
-TODO: Write credits
-
-## License
-
-TODO: Write license
