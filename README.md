@@ -1,20 +1,17 @@
-# CPSC 526 - Assignment 2
-# Proxy Server in Python
+# CPSC 526 - Assignment 3
+# Encrypted File Transfer Client in Python
 
-Multi-client proxy server written in Python, with capabilities for output in various forms (hexdump, autoN(N sized blocks output on each line)
+Encrypted using cryptography.io in python, with either AES128, AES256 or NONE. Allows a client to either write a specified file to the server or read a file from the server. 
 
 ## Installation
 
-Simply copy the ProxyServer.py file and run in from a terminal
+Simply copy the Server.py file and run in from a terminal
 
 ## Usage
 
-Call via "python3 ProxyServer.py [logoptions] sourcePort server destPort"
-  - logoptions:
-    - -raw Simply print out all data as assumed ASCII
-    - -strip Strip and only output printable ASCII characters (Needs work)
-    - -hex Output in the same style as linux hexdump (Needs work)
-    - -autoN Data divided into N byte chunks, replace N with an integer value
+Call via "python3 Server.py <port> <key>"
+  - port The port you wish to listen for connections on
+  - key The key used for symmetric encryption
 
 ## Contributing
 
